@@ -1,5 +1,5 @@
 # Use Node.js 16 slim as the base image
-FROM node:16
+FROM node:16 AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -15,6 +15,12 @@ COPY . .
 
 # Build the React app
 RUN npm run build
+
+FROM alpine:latest
+
+RUN rm -rf ./*
+
+COPY --from=builder /app/dist .
 
 # Expose port 3000 (or the port your app is configured to listen on)
 EXPOSE 3000
