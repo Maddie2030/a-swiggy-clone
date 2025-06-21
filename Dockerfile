@@ -16,7 +16,7 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-FROM alpine:latest
+FROM node:22-alpine
 
 WORKDIR /app2
 
