@@ -18,7 +18,7 @@ RUN npm run build
 
 FROM alpine:latest
 
-RUN rm -rf ./*
+WORKDIR /app2
 
 COPY --from=builder /app/dist .
 
