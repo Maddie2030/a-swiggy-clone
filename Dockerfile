@@ -16,7 +16,7 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:alpine AS runner
 
 COPY --from=builder /app/build /usr/share/nginx/html
 
