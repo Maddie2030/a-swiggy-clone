@@ -20,7 +20,7 @@ FROM node:22-alpine
 
 WORKDIR /app2
 
-COPY --from=builder /app/dist .
+COPY --from=builder /app/build .
 
 # Expose port 3000 (or the port your app is configured to listen on)
 EXPOSE 3000
