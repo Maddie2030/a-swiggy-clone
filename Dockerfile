@@ -16,14 +16,12 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-FROM node:22-alpine
+FROM nginx:alpine
 
-WORKDIR /app2
-
-COPY --from=builder /app/build .
+COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose port 3000 (or the port your app is configured to listen on)
-EXPOSE 3000
+EXPOSE 80
 
 # Start your Node.js server (assuming it serves the React app)
-CMD ["npm", "start"]
+CMD ["nginx","-g", "daemon off;"]
